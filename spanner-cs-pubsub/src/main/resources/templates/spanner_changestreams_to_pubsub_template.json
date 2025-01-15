@@ -1,0 +1,57 @@
+{
+  "image": "gcr.io/$PROJECT_ID/spanner-changestreams-to-pubsub",
+  "metadata": {
+    "name": "Spanner_Change_Streams_to_PubSub",
+    "description": "Stream Spanner Change Streams to Pub/Sub",
+    "parameters": [
+      {
+        "name": "spannerInstanceId",
+        "label": "Spanner Instance ID",
+        "helpText": "The Spanner instance where change streams are configured.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "spannerDatabase",
+        "label": "Spanner Database ID",
+        "helpText": "The Spanner database containing the change streams.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "spannerMetadataInstanceId",
+        "label": "Spanner Metadata Instance ID",
+        "helpText": "The Spanner instance containing metadata.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "spannerMetadataDatabase",
+        "label": "Spanner Metadata Database ID",
+        "helpText": "The Spanner database containing metadata.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "spannerChangeStreamName",
+        "label": "Change Stream Name",
+        "helpText": "The name of the Spanner change stream to use.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "pubsubTopic",
+        "label": "Pub/Sub Topic",
+        "helpText": "The Pub/Sub topic to publish change events.",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "startTimestamp",
+        "label": "Start Timestamp",
+        "helpText": "The timestamp to start reading changes (RFC3339 format).",
+        "paramType": "TEXT"
+      },
+      {
+        "name": "endTimestamp",
+        "label": "End Timestamp",
+        "helpText": "The timestamp to stop reading changes (RFC3339 format).",
+        "paramType": "TEXT"
+      }
+    ]
+  }
+}

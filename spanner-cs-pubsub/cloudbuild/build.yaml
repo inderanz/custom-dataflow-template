@@ -1,0 +1,27 @@
+steps:
+  # Step 1: Build and package the application
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['clean', 'package', '-DskipTests']
+
+  # Step 2: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/spanner-changestreams-to-pubsub', '.']
+
+  # Step 3: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$_PROJECT_ID/spanner-changestreams-to-pubsub']
+
+  # Step 4: Upload the Flex Template specification to Google Cloud Storage
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: [
+      'cp',
+      'src/main/resources/templates/spanner_changestreams_to_pubsub_template.json',
+      'gs://$_BUCKET/templates/'
+    ]
+
+images:
+  - 'gcr.io/$_PROJECT_ID/spanner-changestreams-to-pubsub'
+
+substitutions:
+  _PROJECT_ID: 'spanner-gke-443910'
+  _BUCKET: 'terraform-spanner-bq'
